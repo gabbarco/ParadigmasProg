@@ -4,18 +4,35 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<title>Promises</title>
+	<title>Promises Gabriel Barco</title>
 </head>
 <body>
-    <h1>Busca Pokemon</h1>
-    <label >Pokemon:</label>
-    <input id="pokemon" type="text" name="pokemon">
-    <label >  Geração:</label>
-    <input id="geracao" type="text" name="geracao">
-    <button  type="submit" onclick="searchPokemons()">Enviar</button>
-	<div id="pokedex">
-		Carregando...
+	<div>
+		<form action="#">
+			<div>
+				<div>
+					<label for="name">Nome:</label>
+					<input type="text" name="name" id="name">
+				</div>
+				<div>
+					<label for="gen">Geração:</label>
+					<input type="number" name="gen" id="gen">
+				</div>
+			</div>
+			<div class="button">
+				<input type="button" value="Buscar" id="searchPokemon">
+			</div>
+		</form>
+	</div>
+	<div id="result">
+		<div><img src=""\\></div>
+		<div class="info">
+			<div>Número: ???</div>
+			<div>Nome: ???</div>
+			<div>Tipo: ???</div>
+			<div>Geração: ???</div>
+		</div>
+		
 	</div>
 	<script src="script.js"></script>
 </body>
