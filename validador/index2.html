@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de CEP</title>
+</head>
+<body>
+    <div>
+		<form action="#">
+			<div>
+				<div>
+					<label for="cep">CEP:</label>
+					<input type="text" name="cep" id="cep">
+				</div>
+			</div>
+            <br />
+			<div class="button">
+				<input type="button" value="Buscar" id="procuraCEP" onclick="validaCEP()">
+			</div>
+		</form>
+	</div>
+    <br />
+    <div id="box" style="border: 1px solid; padding: 1em; width: 2em;"></div>
+    <script src="validadores.js"></script>
+</body>
+</html>
