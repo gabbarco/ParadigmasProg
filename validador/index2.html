@@ -11,13 +11,30 @@
 		<form action="#">
 			<div>
 				<div>
-					<label for="cep">CEP:</label>
+					CEP:
+					<br>
 					<input type="text" name="cep" id="cep">
+					<br><br>
+					Email:
+					<br>
+					<input type="text" class="email" id="email">
+					<br><br>
+					CPF:
+					<br>
+					<input type="text" class="cpf" id="cpf">
+					<br><br>
+					Data:
+					<br>
+					<input type="text" class="data" id="data">
+					<br><br>
+					Cartão de crédito:
+					<br>
+					<input type="text" class="card" id="card">
 				</div>
 			</div>
             <br />
 			<div class="button">
-				<input type="button" value="Buscar" id="procuraCEP" onclick="validaCEP()">
+				<input type="button" value="Buscar" id="procuraCEP" onclick="validar(cep, email)">
 			</div>
 		</form>
 	</div>
