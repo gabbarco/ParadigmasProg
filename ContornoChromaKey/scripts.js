@@ -1,22 +1,15 @@
 let canvasOriginal = document.getElementById("imagemOriginal");
 let ctxOriginal = canvasOriginal.getContext("2d");
-
-let canvasNovo = document.getElementById("imagemNova");
-let ctxNovo = canvasNovo.getContext("2d");
-
 let image = new Image();
 image.src = "imagemChromaKey.png";
 
 image.onload = function() {
   canvasOriginal.width = image.width;
   canvasOriginal.height = image.height;
-  canvasNovo.width = image.width;
-  canvasNovo.height = image.height;
   ctxOriginal.drawImage(image, 0, 0);
 };
 
 function horizontal() {
-        ctxNovo.clearRect(0, 0, canvasNovo.width, canvasNovo.height);
         let imageData = ctxOriginal.getImageData(0, 0, canvasOriginal.width, canvasOriginal.height);
         let pixels = imageData.data;
         for (let y = 0; y < canvasOriginal.height; y++) {
@@ -37,11 +30,10 @@ function horizontal() {
                 pixels[horizontal + 3] = a;
             }
         }
-        ctxNovo.putImageData(imageData, 0, 0);
+        ctxOriginal.putImageData(imageData, 0, 0);
 }
 
     function vertical() {
-        ctxNovo.clearRect(0, 0, canvasNovo.width, canvasNovo.height);
         let imageData = ctxOriginal.getImageData(0, 0, canvasOriginal.width, canvasOriginal.height);
         let pixels = imageData.data;
         for (let y = 0; y < canvasOriginal.height / 2; y++) {
@@ -62,7 +54,7 @@ function horizontal() {
                 pixels[vertical + 3] = a;
             }
         }
-        ctxNovo.putImageData(imageData, 0, 0);
+        ctxOriginal.putImageData(imageData, 0, 0);
     }
 
     function rotacionar() {
