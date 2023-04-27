@@ -1,12 +1,12 @@
 let canvasOriginal = document.getElementById("imagemOriginal");
 let ctxOriginal = canvasOriginal.getContext("2d");
 let image = new Image();
-image.src = "imagemChromaKey.png";
+image.src = "galinha.jpg";
 
 image.onload = function() {
   canvasOriginal.width = image.width;
   canvasOriginal.height = image.height;
-  ctxOriginal.drawImage(image, 0, 0);
+  ctxOriginal.drawImage(image, 0, 0, canvasOriginal.width, canvasOriginal.height);
 };
 
 function horizontal() {
@@ -58,11 +58,9 @@ function horizontal() {
     }
 
     function rotacionar() {
-        ctxNovo.clearRect(0, 0, canvasNovo.width, canvasNovo.height);
         let imageData = ctxOriginal.getImageData(0, 0, canvasOriginal.width, canvasOriginal.height);
         let pixels = imageData.data;
-        //Criação nova imagem
-        let newImageData = ctxNovo.createImageData(imageData.height, imageData.width);
+        let newImageData = ctxOriginal.createImageData(imageData.height, imageData.width);
         let newPixels = newImageData.data;
 
         for (let i = 0; i < pixels.length; i += 4) {
@@ -83,28 +81,32 @@ function horizontal() {
           newPixels[novoI+2] = b;
           newPixels[novoI+3] = a;
         }
-        canvasNovo.width = imageData.height;
-        canvasNovo.height = imageData.width;
-        ctxNovo.putImageData(newImageData, 0, 0);
+        canvasOriginal.width = imageData.height;
+        canvasOriginal.height = imageData.width;
+        ctxOriginal.putImageData(newImageData, 0, 0);
 }
 
   function reduzir() {
-        ctxNovo.clearRect(0, 0, canvasNovo.width, canvasNovo.height);
         let imageData = ctxOriginal.getImageData(0, 0, canvasOriginal.width, canvasOriginal.height);
         let pixels = imageData.data;
-        canvasNovo.width = canvasOriginal.width / 2;
-        canvasNovo.height = canvasOriginal.height / 2;
-        ctxNovo.clearRect(0, 0, canvasNovo.width, canvasNovo.height);
+        let imageReduce = ctxOriginal.createImageData(canvasOriginal.width,canvasOriginal.height)
+        let imageReduce_data = imageReduce.data
 
-        for (let x = 0; x < canvasNovo.width; x++) {
-          for (let y = 0; y < canvasNovo.height; y++) {
+        for (let x = 0; x < canvasOriginal.width/2; x++) {
+          for (let y = 0; y < canvasOriginal.height/2; y++) {
             let novoX = x * 2;
             let novoY = y * 2;
+            let i = ((novoY * imageData.width) + novoX) * 4;
+            let novoI = ((y*canvasOriginal.width)+x)*4;
 
-            let i = ((novoY * canvasOriginal.width) + novoX) * 4;
-
-            ctxNovo.fillStyle = "rgba(" + pixels[i] + "," + pixels[i + 1] + "," + pixels[i + 2] + "," + pixels[i + 3] + ")";
-            ctxNovo.fillRect(x, y, 1, 1);
+            imageReduce_data[novoI] = pixels[i];
+            imageReduce_data[novoI+1] = pixels[i+1];
+            imageReduce_data[novoI+2] = pixels[i+2];
+            imageReduce_data[novoI+3] = pixels[i+3];
           }
         }
+        imageReduce.data = imageReduce_data;
+        canvasOriginal.width = canvasOriginal.width/2;
+        canvasOriginal.height = canvasOriginal.height/2;
+        ctxOriginal.putImageData(imageReduce, 0,0);
 }
