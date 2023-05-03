@@ -1,22 +1,30 @@
-import { CARD_LABELS } from "../enums";
+import { CARD_NAIPES } from "../enums";
+import Card from "./card/card";
 
 export default class Deck {
-    constructor() {
 
+    #cards= []
+
+    constructor() {
+        this.#card = this.#create();
     }
     #create() {
-        for (let naipe of CARD_NAIPES) {
-            for (let v=0;v < CARD_LABELS.length; v++)
+        let deck= []
+
+        for(let naipe of CARD_NAIPES){
+            for(let index=0; index < 13; index++){
+                deck.push(new Card(index, naipe));
+            }
         }
     }
     //Embaralhar
     shuffle() {
-    
+        
     }
     //Comprar a carta
-    //Retra a carta do topo do baralho e a retorna
+    //Retira a carta do topo do baralho e a retorna
     draw() {
-
+        return this.#cards.pop();
     }
     
     /**
@@ -27,7 +35,15 @@ export default class Deck {
      * @return void 
      */
     reset(hands) {
+        let deck = this.#create();
 
+		for(let i=0; i<hands.length; ++i){
+			for(let card of hands[i]){
+				let index = deck.findIndex((el)=>el.label===card.label && el.value===card.value);
+				deck.splice(index, 1);
+			}
+        }
+		this.#cards = deck;
     }
 
     print() {
