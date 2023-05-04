@@ -1,4 +1,4 @@
-import { CARD_LABELS, CARD_NAIPES, NAIPE_CLUBS, NAIPE_DIAMONDS, NAIPE_HEARTS, NAIPE_SPADES } from "../../enums";
+import { CARD_LABELS, CARD_NAIPES } from "../../enums";
 
 export default class Card {
 
@@ -17,7 +17,7 @@ export default class Card {
     set value(newValue) {
         if ( isNaN(newValue) || newValue < 1 || newValue > 13) {
             this.#value= this.#value ?? 1;
-            this.#label- this.#label ?? 'A';
+            this.#label= this.#label ?? 'A';
             return;
         }
 
@@ -42,14 +42,12 @@ export default class Card {
         this.#naipe= newNaipe;
     }
 
+    print(){
+        console.log(`${this.value} (${this.label}) de ${this.naipe}`)
+    }
+
+    //Retorna o nome do arquivo da imagem atual
     image() {
-        let v;
-        if (this.value > 1 && this.value < 10) {
-            v='0' + this.label;
-        } else {
-            v= this.label;
-        }
-        
         return `card_${this.#naipe}_${this.#label}.png`
     }
 

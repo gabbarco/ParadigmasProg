@@ -1,32 +1,49 @@
-import { CARD_NAIPES } from "../enums";
+import { CARD_NAIPES} from "../enums";
 import Card from "./card/card";
 
 export default class Deck {
 
-    #cards= []
+    #cards= [];
 
     constructor() {
-        this.#card = this.#create();
+        this.#cards = this.#create();
     }
     #create() {
         let deck= []
-
         for(let naipe of CARD_NAIPES){
-            for(let index=0; index < 13; index++){
+            for(let index=1; index <= 13; index++){
                 deck.push(new Card(index, naipe));
             }
         }
+        return deck
+    }
+    //Checa se a carta pode ser adicionada ao monte
+    check() {
+
     }
     //Embaralhar
     shuffle() {
-        
+        for (let i = this.#cards.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.#cards[i], this.#cards[j]] = [this.#cards[j], this.#cards[i]];
+          }
     }
     //Comprar a carta
     //Retira a carta do topo do baralho e a retorna
     draw() {
         return this.#cards.pop();
     }
-    
+
+    top() {
+        return this.#cards[this.#cards.length - 1];
+    }
+
+    insertLast() {
+        const lastCard = this.#cards.pop();
+        lastCard.print()
+        this.#cards.unshift(lastCard);
+    }
+
     /**
      * @description Remonta o baralho, apenas com as cartas que não estão nas mãos de nenhum dos jogadores
      * 
@@ -44,11 +61,5 @@ export default class Deck {
 			}
         }
 		this.#cards = deck;
-    }
-
-    print() {
-        for (let card of this.#cards) {
-            card.print();
-        }
     }
 }

@@ -1,13 +1,25 @@
-import Card from "./src/entities/card/card";
+import Deck from "./src/entities/deck";
 
-const carta = new Card(8, '4', 'spades')
-const mesa = document.getElementById('mesa')
+let deck = new Deck();
 
-showCard(mesa,carta)
+console.log(deck)
 
-function showCard(el, card) {
-  const html =`
-    <img src="${PATH_CARD_IMG + card.image()}"/>
-  `;
-  el.insertAdjacentHTML('beforeend',html);
-}
+deck.shuffle()
+
+let hands= [];
+
+hands.push(deck.draw());
+hands.push(deck.draw());
+hands.push(deck.draw());
+
+console.log(deck)
+
+console.log(hands)
+
+deck.top()
+
+deck.insertLast()
+
+console.log(deck)
+
+console.log(deck.top())
