@@ -1,3 +1,118 @@
-#body {
-    background-color: aquamarine;
+*{
+    margin:0;
+    padding:0;
+}
+
+
+body{
+    background: linear-gradient(45deg,rgb(26, 216, 1),rgb(39, 68, 0));
+    height: 1200px;
+    font-family: arial;
+}
+
+div.container{
+    box-sizing: border-box;
+    display: grid;
+    margin: 0 auto;
+    padding: 25px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "baralho card-aberta nada naipe1 naipe2 naipe3 naipe4"
+                       "sequencia1  sequencia2 sequencia3 sequencia4 sequencia5 sequencia6 sequencia7";
+    
+}
+
+.container div{
+    margin-bottom: 20px;
+    height: 170px;
+    width: 115px;
+}
+
+img:hover{
+    box-shadow: 0 0 1em gold;
+}
+
+#baralho{
+    grid-area: baralho;
+}
+
+#card-aberta{
+    grid-area: card-aberta;
+
+}
+
+#naipe1{
+    grid-area: naipe1;
+    border: 2px solid black;
+    background-image: url("./public/background/background2.jpg");
+    background-size: contain;
+}
+
+#naipe2{
+    grid-area: naipe2;
+    border: 2px solid black;
+    background-image: url("./public/background/background2.jpg");
+    background-size: contain;
+}
+
+#naipe3{
+    grid-area: naipe3;
+    border: 2px solid black;
+    background-image: url("./public/background/background2.jpg");
+    background-size: contain;
+}
+
+#naipe4{
+    grid-area: naipe4;
+    border: 2px solid black;
+    background-image: url("./public/background/background2.jpg");
+    background-size: contain;
+}
+
+#sequencia1{
+    grid-area: sequencia1;
+}
+
+#sequencia2{
+    grid-area: sequencia2;
+}
+
+#sequencia3{
+    grid-area: sequencia3;
+}
+
+#sequencia4{
+    grid-area: sequencia4;
+}
+
+#sequencia5{
+    grid-area: sequencia5;
+}
+
+#sequencia6{
+    grid-area: sequencia6;
+}
+
+#sequencia7{
+    grid-area: sequencia7;
+}
+
+img{
+    width: 115px;
+    height: 170px;
+}
+
+.espaco,.card-aberta{
+    position: relative;
+}
+
+@media(max-width: 800px){
+    div.container div{
+        height: 60px;
+        width: 45px;
+    }
+    img{
+        height: 60px;
+        width: 45px; 
+    }
 }

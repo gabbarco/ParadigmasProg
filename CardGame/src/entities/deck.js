@@ -17,10 +17,6 @@ export default class Deck {
         }
         return deck
     }
-    //Checa se a carta pode ser adicionada ao monte
-    check() {
-
-    }
     //Embaralhar
     shuffle() {
         for (let i = this.#cards.length - 1; i > 0; i--) {
@@ -38,8 +34,12 @@ export default class Deck {
         return this.#cards[this.#cards.length - 1];
     }
 
-    insertLast() {
-        const lastCard = this.#cards.pop();
+    length() {
+        return this.#cards.length
+    }
+
+    insertLast(cardsAvulsas) {
+        const lastCard = cardsAvulsas.pop();
         lastCard.print()
         this.#cards.unshift(lastCard);
     }
